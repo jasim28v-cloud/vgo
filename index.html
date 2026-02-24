@@ -3,209 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crimson Media Hub | حصري</title>
+    <title>Crimson Exclusive Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --crimson-dark: #6a0572;
-            --crimson-light: #8e2de2;
-            --violet-accent: #4a00e0;
-            --bg-deep: #0f001f;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --text-light: #e0e0e0;
-            --text-dim: #a0a0a0;
+            --crimson: #950101;
+            --deep-purple: #3d0000;
+            --neon-pink: #ff0055;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            background: linear-gradient(135deg, var(--bg-deep) 0%, #1a0033 100%);
-            color: var(--text-light);
+            background: radial-gradient(circle at center, #2a0000 0%, #050000 100%);
+            color: #fff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding: 30px;
+            padding: 20px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .container {
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        /* رأس الصفحة الفخم */
-        .header-glow {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 50px;
+        .main-title {
             text-align: center;
-            margin-bottom: 50px;
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.3); /* توهج قرمزي */
-        }
-
-        h1 {
-            font-size: 3.8rem;
-            margin: 0;
-            background: linear-gradient(to right, var(--crimson-light), var(--violet-accent));
+            font-size: 3rem;
+            text-shadow: 0 0 20px var(--neon-pink);
+            background: linear-gradient(to bottom, #fff, var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
-            font-weight: 700;
+            margin-bottom: 40px;
         }
 
-        .tagline {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            margin-top: 15px;
-        }
-
-        /* مشغل الفيديو الأنيق */
-        .player-stage {
-            background: #000;
-            border-radius: 25px;
+        /* مشغل الفيديو القرمزي */
+        .player-box {
+            max-width: 850px;
+            margin: 0 auto 50px;
+            border-radius: 30px;
             overflow: hidden;
-            border: 2px solid var(--crimson-dark);
-            box-shadow: 0 0 60px rgba(138, 43, 226, 0.4);
-            margin-bottom: 60px;
+            border: 3px solid var(--crimson);
+            box-shadow: 0 0 40px rgba(149, 1, 1, 0.5);
+            background: #000;
         }
 
-        video {
-            width: 100%;
-            display: block;
-            aspect-ratio: 16/9;
-        }
+        video { width: 100%; display: block; aspect-ratio: 16/9; }
 
-        /* شبكة الكروت المتوهجة */
-        .grid-cards {
+        /* الشبكة الاحترافية */
+        .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .media-card {
-            background: var(--glass-bg);
-            border-radius: 25px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .vid-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,0,85,0.2);
+            border-radius: 20px;
+            padding: 15px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: 0.4s;
             text-align: center;
-            position: relative;
+            backdrop-filter: blur(10px);
         }
 
-        .media-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--crimson-light);
-            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
-            background: rgba(138, 43, 226, 0.08);
+        .vid-card:hover {
+            transform: scale(1.08);
+            background: rgba(149, 1, 1, 0.2);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.3);
         }
 
-        .ad-marker {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #ff0077; /* وردي نيون */
-            padding: 5px 12px;
-            border-radius: 25px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .thumb-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--crimson-light);
-            text-shadow: 0 0 15px rgba(255, 0, 119, 0.7); /* توهج للأيقونة */
-        }
-
-        .card-title {
-            font-weight: 700;
-            color: var(--text-light);
-            font-size: 1.1rem;
-            display: block;
-        }
-
-        .view-btn {
-            margin-top: 20px;
-            background: linear-gradient(to right, var(--crimson-light), var(--violet-accent));
+        .btn-action {
+            background: var(--crimson);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 15px;
-            font-weight: bold;
+            padding: 10px;
+            border-radius: 12px;
             width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
-        }
-
-        .view-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
-            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-glow">
-        <h1>CRIMSON MEDIA HUB</h1>
-        <p class="tagline">اكتشف محتوى حصرياً | ادعمنا عبر مشاهدة الإعلانات</p>
-    </div>
+    <h1 class="main-title">CRIMSON HUB</h1>
 
-    <div class="player-stage">
-        <video id="primaryPlayer" controls poster="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.jpg">
+    <div class="player-box">
+        <video id="vidPlayer" controls poster="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.jpg">
             <source src="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.mp4" type="video/mp4">
         </video>
     </div>
 
-    <div class="grid-cards" id="mediaGallery"></div>
-</div>
+    <div class="gallery" id="mediaGrid"></div>
 
-<script>
-    // بيانات فيديوهاتك من Cloudinary وروابط الإعلانات
-    const mediaItems = [
-        { id: "01", title: "محتوى حصري 01", ad: "https://omg10.com/4/10637838" },
-        { id: "02", title: "محتوى حصري 02", ad: "https://omg10.com/4/10639585" },
-        { id: "03", title: "محتوى حصري 03", ad: "https://omg10.com/4/10638265" },
-        { id: "04", title: "محتوى حصري 04", ad: "https://omg10.com/4/10637840" },
-        { id: "05", title: "محتوى حصري 05", ad: "https://omg10.com/4/10637839" },
-        { id: "06", title: "محتوى حصري 06", ad: "https://omg10.com/4/10637838" }
-    ];
+    <script>
+        // الروابط المباشرة من مجموعتك https://collection.cloudinary.com/dssk5tabb/...
+        const videos = [
+            { id: "01", title: "مقطع 01", ad: "https://omg10.com/4/10637838" },
+            { id: "02", title: "مقطع 02", ad: "https://omg10.com/4/10639585" },
+            { id: "03", title: "مقطع 03", ad: "https://omg10.com/4/10638265" },
+            { id: "04", title: "مقطع 04", ad: "https://omg10.com/4/10637840" },
+            { id: "05", title: "مقطع 05", ad: "https://omg10.com/4/10637839" },
+            { id: "06", title: "مقطع 06", ad: "https://omg10.com/4/10637838" }
+        ];
 
-    const myCloudName = "dssk5tabb"; // اسم حسابك في Cloudinary
-    const gallery = document.getElementById('mediaGallery');
-    const player = document.getElementById('primaryPlayer');
+        const cName = "dssk5tabb"; //
+        const grid = document.getElementById('mediaGrid');
+        const mainPlayer = document.getElementById('vidPlayer');
 
-    mediaItems.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'media-card';
-        card.innerHTML = `
-            <div class="ad-marker">AD</div>
-            <div class="thumb-icon">📺</div>
-            <span class="card-title">${item.title}</span>
-            <button class="view-btn">شاهد الآن</button>
-        `;
+        videos.forEach(v => {
+            const card = document.createElement('div');
+            card.className = 'vid-card';
+            card.innerHTML = `
+                <div style="font-size: 3rem;">🔥</div>
+                <div style="font-weight: bold;">${v.title}</div>
+                <button class="btn-action">دخول</button>
+            `;
 
-        card.onclick = () => {
-            // فتح الإعلان لتحقيق الربح
-            window.open(item.ad, '_blank');
-            
-            // تشغيل الفيديو من Cloudinary مع التحسينات
-            const videoSource = `https://res.cloudinary.com/${myCloudName}/video/upload/f_auto,q_auto/v1/${item.id}.mp4`;
-            player.src = videoSource;
-            player.load();
-            player.play().catch(e => console.log("تفاعل المستخدم مطلوب للتشغيل التلقائي"));
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-        gallery.appendChild(card);
-    });
-</script>
-
+            card.onclick = () => {
+                // فتح الإعلان الربحي
+                window.open(v.ad, '_blank');
+                
+                // استخدام الروابط المباشرة المستخرجة من مجموعتك بترميز f_auto
+                mainPlayer.src = `https://res.cloudinary.com/${cName}/video/upload/f_auto,q_auto/v1/${v.id}.mp4`;
+                mainPlayer.load();
+                mainPlayer.play();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            };
+            grid.appendChild(card);
+        });
+    </script>
 </body>
 </html>
