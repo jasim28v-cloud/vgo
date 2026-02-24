@@ -3,136 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crimson Exclusive Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Crimson Studio - Final Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --crimson: #950101;
-            --deep-purple: #3d0000;
-            --neon-pink: #ff0055;
-            --glass: rgba(255, 255, 255, 0.05);
+            --crimson: #dc143c;
+            --dark-bg: #0a0000;
+            --glass: rgba(220, 20, 60, 0.1);
         }
-
         body {
-            background: radial-gradient(circle at center, #2a0000 0%, #050000 100%);
+            background: radial-gradient(circle, #200000, var(--dark-bg));
             color: #fff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .main-title {
+            padding: 15px;
             text-align: center;
-            font-size: 3rem;
-            text-shadow: 0 0 20px var(--neon-pink);
-            background: linear-gradient(to bottom, #fff, var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 40px;
         }
-
-        /* مشغل الفيديو القرمزي */
-        .player-box {
-            max-width: 850px;
-            margin: 0 auto 50px;
-            border-radius: 30px;
-            overflow: hidden;
+        .header {
+            padding: 30px;
+            border-bottom: 2px solid var(--crimson);
+            text-shadow: 0 0 10px var(--crimson);
+            margin-bottom: 30px;
+        }
+        /* حاوية المشغل */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
             border: 3px solid var(--crimson);
-            box-shadow: 0 0 40px rgba(149, 1, 1, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
             background: #000;
+            box-shadow: 0 0 30px rgba(220, 20, 60, 0.4);
         }
-
-        video { width: 100%; display: block; aspect-ratio: 16/9; }
-
-        /* الشبكة الاحترافية */
-        .gallery {
+        video { width: 100%; aspect-ratio: 16/9; display: block; }
+        
+        /* شبكة الفيديوهات */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 25px;
-            max-width: 900px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            max-width: 800px;
             margin: 0 auto;
         }
-
-        .vid-card {
+        .card {
             background: var(--glass);
-            border: 1px solid rgba(255,0,85,0.2);
-            border-radius: 20px;
+            border: 1px solid var(--crimson);
+            border-radius: 15px;
             padding: 15px;
             cursor: pointer;
-            transition: 0.4s;
-            text-align: center;
-            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
-
-        .vid-card:hover {
-            transform: scale(1.08);
-            background: rgba(149, 1, 1, 0.2);
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 25px rgba(255, 0, 85, 0.3);
-        }
-
-        .btn-action {
+        .card:hover {
             background: var(--crimson);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 12px;
-            width: 100%;
-            margin-top: 10px;
-            font-weight: bold;
-            cursor: pointer;
+            transform: scale(1.05);
         }
+        .ad-text { font-size: 10px; color: #ffeb3b; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h1 class="main-title">CRIMSON HUB</h1>
+<div class="header">
+    <h1>CRIMSON HUB</h1>
+    <p>إذا لم يظهر الفيديو، تأكد من تحديث الصفحة</p>
+</div>
 
-    <div class="player-box">
-        <video id="vidPlayer" controls poster="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.jpg">
-            <source src="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.mp4" type="video/mp4">
-        </video>
-    </div>
+<div class="video-container">
+    <video id="mainPlayer" controls poster="https://res.cloudinary.com/dssk5tabb/video/upload/v1/01.jpg">
+        <source src="https://res.cloudinary.com/dssk5tabb/video/upload/f_auto,q_auto/v1/01.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+</div>
 
-    <div class="gallery" id="mediaGrid"></div>
+<div class="grid" id="playlist"></div>
 
-    <script>
-        // الروابط المباشرة من مجموعتك https://collection.cloudinary.com/dssk5tabb/...
-        const videos = [
-            { id: "01", title: "مقطع 01", ad: "https://omg10.com/4/10637838" },
-            { id: "02", title: "مقطع 02", ad: "https://omg10.com/4/10639585" },
-            { id: "03", title: "مقطع 03", ad: "https://omg10.com/4/10638265" },
-            { id: "04", title: "مقطع 04", ad: "https://omg10.com/4/10637840" },
-            { id: "05", title: "مقطع 05", ad: "https://omg10.com/4/10637839" },
-            { id: "06", title: "مقطع 06", ad: "https://omg10.com/4/10637838" }
-        ];
+<script>
+    const cloudName = "dssk5tabb"; //
+    const data = [
+        { id: "01", name: "مقطع 1", ad: "https://omg10.com/4/10637838" },
+        { id: "02", name: "مقطع 2", ad: "https://omg10.com/4/10639585" },
+        { id: "03", name: "مقطع 3", ad: "https://omg10.com/4/10638265" },
+        { id: "04", name: "مقطع 4", ad: "https://omg10.com/4/10637840" },
+        { id: "05", name: "مقطع 5", ad: "https://omg10.com/4/10637839" },
+        { id: "06", name: "مقطع 6", ad: "https://omg10.com/4/10637838" }
+    ];
 
-        const cName = "dssk5tabb"; //
-        const grid = document.getElementById('mediaGrid');
-        const mainPlayer = document.getElementById('vidPlayer');
+    const playlist = document.getElementById('playlist');
+    const player = document.getElementById('mainPlayer');
 
-        videos.forEach(v => {
-            const card = document.createElement('div');
-            card.className = 'vid-card';
-            card.innerHTML = `
-                <div style="font-size: 3rem;">🔥</div>
-                <div style="font-weight: bold;">${v.title}</div>
-                <button class="btn-action">دخول</button>
-            `;
+    data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<span class="ad-text">إعلان ربحي</span><br><b>${item.name}</b>`;
+        
+        div.onclick = function() {
+            // محاولة فتح الإعلان
+            const adWindow = window.open(item.ad, '_blank');
+            if(!adWindow) alert("برجاء سماح للمتصفح بفتح النوافذ المنبثقة لرؤية الإعلانات والربح");
 
-            card.onclick = () => {
-                // فتح الإعلان الربحي
-                window.open(v.ad, '_blank');
-                
-                // استخدام الروابط المباشرة المستخرجة من مجموعتك بترميز f_auto
-                mainPlayer.src = `https://res.cloudinary.com/${cName}/video/upload/f_auto,q_auto/v1/${v.id}.mp4`;
-                mainPlayer.load();
-                mainPlayer.play();
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            };
-            grid.appendChild(card);
-        });
-    </script>
+            // تغيير الفيديو لرابط مباشر مع تقنيات Cloudinary
+            const newSrc = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto/v1/${item.id}.mp4`;
+            
+            player.src = newSrc;
+            player.load();
+            player.play().catch(e => {
+                console.log("التشغيل التلقائي يحتاج لضغطك على زر التشغيل");
+            });
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+        playlist.appendChild(div);
+    });
+</script>
+
 </body>
 </html>
